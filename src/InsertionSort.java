@@ -1,14 +1,16 @@
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
-public class insertionSort {
-    public static void main(String[] args) throws FileNotFoundException {
+public class InsertionSort {
+    public static void main(String[] args) throws IOException {
         int[] data = new int[10000000];
         int cnt = 0;
         int key;
         long startTime, endTime;
         Scanner scanner = new Scanner(new File("input.txt"));
+        FileWriter fileWriter=new FileWriter(new File("201202141_output.txt"));
         while (scanner.hasNext()) {
             data[cnt++] = scanner.nextInt();
         }
@@ -25,8 +27,11 @@ public class insertionSort {
         }
         endTime = System.nanoTime();
         System.out.println(endTime - startTime);
-        for (int i = 0; i < cnt; i++) {
-            System.out.println(data[i]);
+        fileWriter.write(""+data[0]);
+        for (int i = 1; i < cnt; i++) {
+            fileWriter.write(" "+data[i]);
         }
+        fileWriter.flush();
+        fileWriter.close();
     }
 }
